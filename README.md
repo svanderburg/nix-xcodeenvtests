@@ -2,7 +2,7 @@ Nix xcode tests
 ===============
 
 This package contains a simple tutorial case, taken from Apple's iOS tutorial:
-[/nix/store/rghvj55gkmnwza1mikn0i852ds2kdh2c-node-v0.8.15.tar.gz](/nix/store/rghvj55gkmnwza1mikn0i852ds2kdh2c-node-v0.8.15.tar.gz)
+[http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphone101/Articles/00_Introduction.html](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphone101/Articles/00_Introduction.html)
 to the test the `xcodeenv.buildApp {}` function that can be used with the
 [Nix package manager](http://nixos.org/nix).
 
