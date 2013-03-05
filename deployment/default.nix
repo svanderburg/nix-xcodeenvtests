@@ -1,5 +1,7 @@
+{ nixpkgs ? <nixpkgs> }:
+
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import nixpkgs { system = "x86_64-darwin"; };
 in
 rec {
   helloworld = import ./helloworld {
