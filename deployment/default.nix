@@ -21,8 +21,8 @@ rec {
   }; 
   
   simulate_helloworld_ipad_retina = import ./simulate-helloworld {
-    inherit (pkgs) xcodeenv
-    inehrit helloworld;
+    inherit (pkgs) xcodeenv;
+    inherit helloworld;
     device = "iPad (Retina)";
   };
   
