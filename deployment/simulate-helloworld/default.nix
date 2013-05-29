@@ -1,7 +1,7 @@
-{xcodeenv, helloworld, device}:
+{stdenv, xcodeenv, helloworld, device}:
 
 xcodeenv.simulateApp {
-  name = "HelloWorld";
+  name = "simulate-${helloworld.name}-${stdenv.lib.replaceChars [" " "(" ")"] ["_" "" ""] device}";
   app = helloworld;
   inherit device;
 }
