@@ -5,6 +5,14 @@ newId="$2"
 newDomain="$3"
 newCompanyName="$4"
 
+if [ "$(which gsed)" = "" ]
+then
+    SED=sed
+else
+    SED=gsed
+fi
+
+
 if [ $# -ne 4 ]
 then
     echo "Usage:"
@@ -48,26 +56,26 @@ done
 
 find . -type f | while read i
 do
-    sed -i -e "s%HelloWorld%$newName%g" "$i"
+    $SED -i -e "s%HelloWorld%$newName%g" "$i"
 done
 
 # Replace application id in contents
 
 find . -type f | while read i
 do
-    sed -i -e "s%helloworld%$newId%g" "$i"
+    $SED -i -e "s%helloworld%$newId%g" "$i"
 done
 
 # Replace domain in contents
 
 find . -type f | while read i
 do
-    sed -i -e "s%MyCompany%$newDomain%g" "$i"
+    $SED -i -e "s%MyCompany%$newDomain%g" "$i"
 done
 
 # Replace company in contents
 
 find . -type f | while read i
 do
-    sed -i -e "s%My Company%$newCompanyName%g" "$i"
+    $SED -i -e "s%My Company%$newCompanyName%g" "$i"
 done
