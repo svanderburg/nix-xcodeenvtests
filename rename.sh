@@ -5,19 +5,19 @@ newId="$2"
 newDomain="$3"
 newCompanyName="$4"
 
-if [ "$(which gsed)" = "" ]
-then
-    SED=sed
-else
-    SED=gsed
-fi
-
-
 if [ $# -ne 4 ]
 then
     echo "Usage:"
     echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Company\""
     exit 1
+fi
+
+# Determine which sed to use
+if [ "$(which gsed)" = "" ]
+then
+    SED=sed
+else
+    SED=gsed
 fi
 
 # Rename files that have the application name in them
@@ -31,7 +31,7 @@ do
        break;
     fi
 
-    newFilename="$(echo "$renameFile" | sed "s%HelloWorld%$newName%")"
+    newFilename="$(echo "$renameFile" | $SED "s%HelloWorld%$newName%")"
 
     mv "$renameFile" "$newFilename"
 done
@@ -47,7 +47,7 @@ do
        break;
     fi
 
-    newFilename="$(echo "$renameFile" | sed "s%helloworld%$newId%")"
+    newFilename="$(echo "$renameFile" | $SED "s%helloworld%$newId%")"
 
     mv "$renameFile" "$newFilename"
 done
