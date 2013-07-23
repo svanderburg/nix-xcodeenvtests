@@ -3,6 +3,7 @@
 xcodeenv.buildApp {
   name = "HelloWorld";
   src = ../../src/HelloWorld;
+  scheme = "HelloWorld";
   
   /*release = true;
   certificateFile = ./certificate.p12;
