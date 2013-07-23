@@ -1,15 +1,14 @@
-{xcodeenv}:
+{ xcodeenv, release ? false
+, certificateFile ? null, certificatePassword ? "", codeSignIdentity ? null, provisioningProfile ? null
+, generateIPA ? false, generateXCArchive ? false
+}:
 
 xcodeenv.buildApp {
   name = "HelloWorld";
   src = ../../src/HelloWorld;
   scheme = "HelloWorld";
   
-  /*release = true;
-  certificateFile = ./certificate.p12;
-  certificatePassword = "";
-  codeSignIdentity = "iPhone Distribution: My Company";
-  provisioningProfile = ./provision.mobileprovision;
-  generateIPA = true;
-  generateXCArchive = false;*/
+  inherit release;
+  inherit certificateFile certificatePassword codeSignIdentity provisioningProfile;
+  inherit generateIPA generateXCArchive;
 }

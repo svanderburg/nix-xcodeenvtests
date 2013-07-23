@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 newName="$1"
 newId="$2"
@@ -8,6 +8,9 @@ newCompanyName="$4"
 if [ $# -ne 4 ]
 then
     echo "Usage:"
+    echo "$0 name id domain company_name"
+    echo
+    echo "Example:"
     echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Company\""
     exit 1
 fi
