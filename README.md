@@ -4,21 +4,25 @@ Nix xcode tests
 This package contains a simple tutorial case, taken from Apple's iOS tutorial:
 [http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphone101/Articles/00_Introduction.html](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphone101/Articles/00_Introduction.html)
 to the test the `xcodeenv.buildApp {}` function that can be used with the
-[Nix package manager](http://nixos.org/nix).
+[Nix package manager](http://nixos.org/nix) to build iOS apps. Additionally, it
+can be used with `xcodeenv.simulateApp {}` to generate a script that
+automatically starts an iOS app.
 
 Apart from the tutorial, it has two additions:
 
 * It implements an iPad storyboard (the process is the same as for an iPhone storyboard), so that it can be tested for iPad devices
 * It contains some very ugly icons (created myself :-) ), to allow releases to pass validation
 
+Prerequisites
+=============
+In order to run the examples, you must have the [Nix package manager](http://nixos.org/nix)
+installed and a copy of [Nixpkgs](http://nixos.org/nixpkgs). Consult the Nix
+manual for more details on this.
+
 Usage
 =====
-In order to run the examples, you must have the Nix package manager installed
-and a copy of [Nixpkgs](http://nixos.org/nixpkgs). Consult the Nix manual for
-more details on this.
-
-Then a debug app for the iPhone simulator can be built by entering the
-`deployment/` directory and by running:
+A debug app for the iPhone simulator can be built by entering the `deployment/`
+directory and by running:
 
     $ nix-build -A helloworld
 
