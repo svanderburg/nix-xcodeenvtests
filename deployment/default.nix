@@ -1,18 +1,18 @@
 { nixpkgs ? <nixpkgs>
 , rename ? false
-, newName ? null
-, newId ? null
-, newDomain ? null
-, newCompanyName ? null
+, newName ? "Renamed"
+, newId ? "renamedapp"
+, newDomain ? "com.myrenamedcompany"
+, newCompanyName ? "My renamed company"
 , buildIPA ? false
 , ipaCertificateFile ? null
 , ipaCertificatePassword ? ""
-, ipaCodeSignIdentity ? false
+, ipaCodeSignIdentity ? "iPhone Distribution: My Company"
 , ipaProvisioningProfile ? null
 , buildXCArchive ? false
 , xcArchiveCertificateFile ? null
 , xcArchiveCertificatePassword ? ""
-, xcArchiveCodeSignIdentity ? false
+, xcArchiveCodeSignIdentity ? "iPhone Distribution: My Company"
 , xcArchiveProvisioningProfile ? null
 }:
 
