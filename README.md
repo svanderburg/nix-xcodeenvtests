@@ -79,11 +79,11 @@ parameter to `true` and setting a collection of additional parameters:
       --arg ipaCertificateFile /path/to/certificate.p12 \
       --argstr ipaCertificatePassword secret \
       --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \
-      --argstr ipaProvisioningProfile /path/to/provisioning.mobileprovision \
+      --arg ipaProvisioningProfile /path/to/provisioning.mobileprovision \
       --arg xcArchiveCertificateFile /path/to/certificate.p12 \
       --argstr xcArchiveCertificatePassword secret \
       --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company" \
-      --argstr xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
+      --arg xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
       -A renamedPkgs.renamedapp_ipa
 
 a sub attribute set called `renamedPkgs` is generated referring to an app that
@@ -91,9 +91,8 @@ has renamed several of its standard properties to those provided by the `new*`
 parameters.  The `new*` parameters should be changed to match those in your
 certificate and mobile provisioning profile.
 
-To find out what they are use the Keychain to inspect the certificate (p12 file)
+To find out what they are, use the Keychain to inspect the certificate (p12 file)
 and Xcode (or a text editor) to inspect the mobile provisioning profile.
 
-The IPA attribute inside this sub attribute set can be used to produce an IPA
-that can be actually deployed to an Apple device if all attributes are set
-correctly.
+The resulting IPA file can actually be deployed to an Apple device if all
+attributes are set correctly.
