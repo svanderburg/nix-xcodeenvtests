@@ -1,4 +1,4 @@
-{ xcodeenv, release ? false
+{ xcodeenv, sdkVersion, release ? false
 , certificateFile ? null, certificatePassword ? "", codeSignIdentity ? null, provisioningProfile ? null
 , generateIPA ? false, generateXCArchive ? false
 }:
@@ -8,7 +8,7 @@ xcodeenv.buildApp {
   src = ../../src/HelloWorld;
   scheme = "HelloWorld";
   
-  inherit release;
+  inherit sdkVersion release;
   inherit certificateFile certificatePassword codeSignIdentity provisioningProfile;
   inherit generateIPA generateXCArchive;
 }

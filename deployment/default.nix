@@ -1,4 +1,6 @@
 { nixpkgs ? <nixpkgs>
+, xcodeVersion ? "5.0"
+, sdkVersion ? "7.0"
 , rename ? false
 , newName ? "Renamed"
 , newId ? "renamedapp"
@@ -18,45 +20,46 @@
 
 let
   pkgs = import nixpkgs { system = "x86_64-darwin"; };
+  xcodeenv = pkgs.xcodeenv.override { version = xcodeVersion; };
 in
 rec {
   helloworld = import ./helloworld {
-    inherit (pkgs) xcodeenv;
+    inherit xcodeenv sdkVersion;
   };
 
   simulate_helloworld_iphone = import ./simulate-helloworld {
-    inherit (pkgs) stdenv xcodeenv;
-    inherit helloworld;
+    inherit (pkgs) stdenv;
+    inherit xcodeenv helloworld;
     device = "iPhone";
   };
 
   simulate_helloworld_ipad = import ./simulate-helloworld {
-    inherit (pkgs) stdenv xcodeenv;
-    inherit helloworld;
+    inherit (pkgs) stdenv;
+    inherit xcodeenv helloworld;
     device = "iPad";
   }; 
   
   simulate_helloworld_ipad_retina = import ./simulate-helloworld {
-    inherit (pkgs) stdenv xcodeenv;
-    inherit helloworld;
+    inherit (pkgs) stdenv;
+    inherit xcodeenv helloworld;
     device = "iPad (Retina)";
   };
   
   simulate_helloworld_iphone_retina_3_5_inch = import ./simulate-helloworld {
-    inherit (pkgs) stdenv xcodeenv;
-    inherit helloworld;
+    inherit (pkgs) stdenv;
+    inherit xcodeenv helloworld;
     device = "iPhone (Retina 3.5-inch)";
   };
   
   simulate_helloworld_iphone_retina_4_inch = import ./simulate-helloworld {
-    inherit (pkgs) stdenv xcodeenv;
-    inherit helloworld;
+    inherit (pkgs) stdenv;
+    inherit xcodeenv helloworld;
     device = "iPhone (Retina 4-inch)";
   };
 } // (if buildIPA then {
 
   helloworld_ipa = import ./helloworld {
-    inherit (pkgs) xcodeenv;
+    inherit xcodeenv sdkVersion;
     release = true;
     generateIPA = true;
     certificateFile = ipaCertificateFile;
@@ -68,7 +71,7 @@ rec {
 } else {}) // (if buildXCArchive then {
 
   helloworld_xcarchive = import ./helloworld {
-    inherit (pkgs) xcodeenv;
+    inherit xcodeenv sdkVersion;
     release = true;
     generateXCArchive = true;
     certificateFile = xcArchiveCertificateFile;
@@ -85,7 +88,7 @@ rec {
   };
   
   renamedPkgs = import "${renamed_source}/deployment" {
-    inherit nixpkgs;
+    inherit nixpkgs xcodeVersion sdkVersion;
     rename = false;
     buildIPA = true;
     buildXCArchive = true;
