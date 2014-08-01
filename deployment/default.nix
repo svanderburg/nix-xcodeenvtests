@@ -16,6 +16,9 @@
 , xcArchiveCertificatePassword ? ""
 , xcArchiveCodeSignIdentity ? "iPhone Distribution: My Company"
 , xcArchiveProvisioningProfile ? null
+, enableWirelessDistribution ? false
+, installURL ? null
+, version ? "1.0"
 }:
 
 let
@@ -66,6 +69,9 @@ rec {
     certificatePassword = ipaCertificatePassword;
     codeSignIdentity = ipaCodeSignIdentity;
     provisioningProfile = ipaProvisioningProfile;
+    inherit enableWirelessDistribution installURL version;
+    bundleId = "${newDomain}.${newId}";
+    title = newName;
   };
 
 } else {}) // (if buildXCArchive then {
@@ -94,6 +100,7 @@ rec {
     buildXCArchive = true;
     inherit ipaCertificateFile ipaCertificatePassword ipaCodeSignIdentity ipaProvisioningProfile;
     inherit xcArchiveCertificateFile xcArchiveCertificatePassword xcArchiveCodeSignIdentity xcArchiveProvisioningProfile;
+    inherit enableWirelessDistribution installURL version;
   };
   
 } else {})

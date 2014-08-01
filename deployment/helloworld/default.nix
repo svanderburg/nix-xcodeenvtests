@@ -1,6 +1,7 @@
 { xcodeenv, sdkVersion, release ? false
 , certificateFile ? null, certificatePassword ? "", codeSignIdentity ? null, provisioningProfile ? null
 , generateIPA ? false, generateXCArchive ? false
+, enableWirelessDistribution ? false, installURL ? null, bundleId ? null, version ? null, title ? null
 }:
 
 xcodeenv.buildApp {
@@ -11,4 +12,5 @@ xcodeenv.buildApp {
   inherit sdkVersion release;
   inherit certificateFile certificatePassword codeSignIdentity provisioningProfile;
   inherit generateIPA generateXCArchive;
+  inherit enableWirelessDistribution installURL bundleId version title;
 }
