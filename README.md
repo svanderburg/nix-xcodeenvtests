@@ -96,3 +96,77 @@ and Xcode (or a text editor) to inspect the mobile provisioning profile.
 
 The resulting IPA file can actually be deployed to an Apple device if all
 attributes are set correctly.
+
+Enabling wireless ad-hoc distributions of iOS apps
+--------------------------------------------------
+It is also possible to do automatic installs of ad-hoc IPA files from Hydra, the
+Nix-based continuous integration server.
+
+To allow users to do such tasks, we must add a forwarding HTML page build product
+to a build and install a couple of PHP scripts on the Hydra server generating a
+plist configuration file.
+
+By adding a number of extra parameters to the previous composition expression,
+such as `enableWirelessDistribution`, we can generate the forwarding HTML page
+build product and provide all relevant settings for generating a plist file:
+
+    $ nix-build --arg rename true \
+      --argstr newName "Renamed" \
+      --argstr newId "renamedapp" \
+      --argstr newDomain "com.example" \
+      --argstr newCompanyName "My Renamed Company" \
+      --arg ipaCertificateFile /path/to/certificate.p12 \
+      --argstr ipaCertificatePassword secret \
+      --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+      --arg ipaProvisioningProfile /path/to/provisioning.mobileprovision \
+      --arg xcArchiveCertificateFile /path/to/certificate.p12 \
+      --argstr xcArchiveCertificatePassword secret \
+      --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+      --arg xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
+      --arg enableWirelessDistribution true \
+      --arg installURL "/installipa.php" \
+      --argstr bundleId "com.mycoolcompany.renamed" \
+      --argstr version "1.0" \
+      --argstr title "Renamed" \
+      -A renamedPkgs.renamedapp_ipa
+
+We have also configured an `installURL`, which is a PHP script responsible for
+doing the generation.
+
+The PHP scripts must be installed by enabling PHP on the reverse proxy of Hydra,
+setting the document root to the `distribution-proxy` folder that is part of this
+package and by defining adding rules for these PHP scripts not to forward
+connections to Hydra's Catalyst server.
+
+If NixOS is used for deploying the Hydra machine, the reverse proxy's
+configuration can be defined as follows:
+
+    services.httpd = {
+      enable = true;
+      adminAddr = "admin@example.com";
+      hostName = "hydra.example.com";
+      extraModules = [
+        { name = "php5"; path = "${pkgs.php}/modules/libphp5.so"; }
+      ];
+      documentRoot = ./src/distribution-proxy;
+        buildCommand = ''
+          mkdir -p $out
+          cp $src/src/distribution-proxy/*.php $out
+        '';
+      };
+
+      extraConfig = ''
+        <proxy>
+          Order deny,allow
+          Allow from all
+        </proxy>
+          
+        ProxyPass /installipa.php !
+        ProxyPass /distribution.plist.php !
+          
+        ProxyRequests     Off
+        ProxyPreserveHost On
+        ProxyPass         /  http://localhost:3000/ retry=5 disablereuse=on
+        ProxyPassReverse  /  http://localhost:3000/
+      '';
+    };
