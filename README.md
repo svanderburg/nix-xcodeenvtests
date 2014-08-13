@@ -148,7 +148,9 @@ configuration can be defined as follows:
       extraModules = [
         { name = "php5"; path = "${pkgs.php}/modules/libphp5.so"; }
       ];
-      documentRoot = ./src/distribution-proxy;
+      documentRoot = pkgs.stdenv.mkDerivation {
+        name = "distribution-proxy";
+        src =./src/distribution-proxy;
         buildCommand = ''
           mkdir -p $out
           cp $src/src/distribution-proxy/*.php $out
