@@ -1,5 +1,6 @@
 { nixpkgs ? <nixpkgs>
-, xcodeVersion ? "5.0"
+, xcodeVersion ? "6.0.1"
+, xcodeBaseDir ? "/Applications/Xcode.app"
 , sdkVersion ? "7.0"
 , rename ? false
 , newName ? "Renamed"
@@ -23,7 +24,10 @@
 
 let
   pkgs = import nixpkgs { system = "x86_64-darwin"; };
-  xcodeenv = pkgs.xcodeenv.override { version = xcodeVersion; };
+  xcodeenv = pkgs.xcodeenv.override {
+    inherit xcodeBaseDir;
+    version = xcodeVersion;
+  };
 in
 rec {
   helloworld = import ./helloworld {
