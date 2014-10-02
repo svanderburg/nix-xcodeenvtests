@@ -1,7 +1,7 @@
 { nixpkgs ? <nixpkgs>
 , xcodeVersion ? "6.0.1"
 , xcodeBaseDir ? "/Applications/Xcode.app"
-, sdkVersion ? "7.0"
+, sdkVersion ? "8.0"
 , rename ? false
 , newName ? "Renamed"
 , newId ? "renamedapp"
@@ -98,7 +98,7 @@ rec {
   };
   
   renamedPkgs = import "${renamed_source}/deployment" {
-    inherit nixpkgs xcodeVersion sdkVersion;
+    inherit nixpkgs xcodeVersion xcodeBaseDir sdkVersion;
     rename = false;
     buildIPA = true;
     buildXCArchive = true;
