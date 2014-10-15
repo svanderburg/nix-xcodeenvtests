@@ -34,34 +34,10 @@ rec {
     inherit xcodeenv sdkVersion;
   };
 
-  simulate_helloworld_iphone = import ./simulate-helloworld {
+  simulate_helloworld = import ./simulate-helloworld {
     inherit (pkgs) stdenv;
     inherit xcodeenv helloworld;
-    device = "iPhone";
-  };
-
-  simulate_helloworld_ipad = import ./simulate-helloworld {
-    inherit (pkgs) stdenv;
-    inherit xcodeenv helloworld;
-    device = "iPad";
-  }; 
-  
-  simulate_helloworld_ipad_retina = import ./simulate-helloworld {
-    inherit (pkgs) stdenv;
-    inherit xcodeenv helloworld;
-    device = "iPad (Retina)";
-  };
-  
-  simulate_helloworld_iphone_retina_3_5_inch = import ./simulate-helloworld {
-    inherit (pkgs) stdenv;
-    inherit xcodeenv helloworld;
-    device = "iPhone (Retina 3.5-inch)";
-  };
-  
-  simulate_helloworld_iphone_retina_4_inch = import ./simulate-helloworld {
-    inherit (pkgs) stdenv;
-    inherit xcodeenv helloworld;
-    device = "iPhone (Retina 4-inch)";
+    bundleId = "MyCompany.HelloWorld";
   };
 } // (if buildIPA then {
 
