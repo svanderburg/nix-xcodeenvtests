@@ -58,6 +58,23 @@ The above `nix-build` instruction produces a shell script taking care of
 the starting process. By running the shell script, a particular simulator
 instance is launched.
 
+Defining build variability points
+---------------------------------
+By default, the example case has been configured to use the latest version of
+Xcode that resides in the default location on the filesystem and the latest
+version of the iPhone SDKs.
+
+These values can be overridden by setting a number of parameters, e.g.:
+
+    $ nix-build --argstr xcodeVersion 6.0.1 \
+      --argstr xcodeBaseDir "/Applications/Xcode.app" \
+      --argstr sdkVersion 8.0 \
+      -A helloworld
+
+The above parameters specify that Xcode version 6.0.1 should be used that can be
+found in `/Applications/Xcode.app` on the filesystem. The iPhone SDK version 8.0
+should be used for building.
+
 Building the app for a device or for release
 --------------------------------------------
 Building the app for a real Apple device or for the App store is more
