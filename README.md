@@ -41,22 +41,22 @@ release parameter, a release can be built. In order to do this you need
 a distribution certificate and provisioning profile from Apple. The paths
 to the keys must be adapted to suit your environment.
 
+Running the app in the iOS simulator
+------------------------------------
 We can also automatically start a simulator instance running the app.
-The following command-line instruction runs the app on a simulated iPhone
-instance:
+When building the simulate job and running the resulting script:
 
-    $ nix-build -A simulate_helloworld_iphone
+    $ nix-build -A simulate_helloworld
     $ ./result/bin/run-test-simulator
 
-The following command-line instruction runs the app on a simulated iPad
-instance:
+You are asked to select an iOS simulator instance (by its UDID) and for
+confirmation when the simulator has actually started. Finally, the app is
+installed and launched automatically.
 
-    $ nix-build -A simulate_helloworld_ipad
-    $ ./result/bin/run-test-simulator
+For convenience, the UDID of the simulator instance can also be provided as a
+command-line parameter so that there is only little user interaction needed:
 
-The above `nix-build` instruction produces a shell script taking care of
-the starting process. By running the shell script, a particular simulator
-instance is launched.
+    $ ./result/bin/run-test-simulator 9611697B-6F21-4479-AF74-4FA2DEEF06EE
 
 Defining build variability points
 ---------------------------------
