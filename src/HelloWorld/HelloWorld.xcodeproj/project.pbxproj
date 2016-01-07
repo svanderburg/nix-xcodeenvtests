@@ -21,7 +21,6 @@
 		C5F1A6FD165F95CF00C44F2D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F1A6FB165F95CF00C44F2D /* MainStoryboard_iPhone.storyboard */; };
 		C5F1A700165F95CF00C44F2D /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F1A6FE165F95CF00C44F2D /* MainStoryboard_iPad.storyboard */; };
 		C5F1A703165F95CF00C44F2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1A702165F95CF00C44F2D /* ViewController.m */; };
-		C5F1A70B165F95CF00C44F2D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F1A70A165F95CF00C44F2D /* SenTestingKit.framework */; };
 		C5F1A70C165F95CF00C44F2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F1A6E3165F95CF00C44F2D /* UIKit.framework */; };
 		C5F1A70D165F95CF00C44F2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F1A6E5165F95CF00C44F2D /* Foundation.framework */; };
 		C5F1A715165F95CF00C44F2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C5F1A713165F95CF00C44F2D /* InfoPlist.strings */; };
@@ -58,8 +57,7 @@
 		C5F1A6FF165F95CF00C44F2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		C5F1A701165F95CF00C44F2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C5F1A702165F95CF00C44F2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C5F1A709165F95CF00C44F2D /* HelloWorldTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloWorldTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5F1A70A165F95CF00C44F2D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C5F1A709165F95CF00C44F2D /* HelloWorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloWorldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F1A712165F95CF00C44F2D /* HelloWorldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloWorldTests-Info.plist"; sourceTree = "<group>"; };
 		C5F1A714165F95CF00C44F2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C5F1A716165F95CF00C44F2D /* HelloWorldTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldTests.h; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5F1A70B165F95CF00C44F2D /* SenTestingKit.framework in Frameworks */,
 				C5F1A70C165F95CF00C44F2D /* UIKit.framework in Frameworks */,
 				C5F1A70D165F95CF00C44F2D /* Foundation.framework in Frameworks */,
 			);
@@ -104,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				C5F1A6DF165F95CF00C44F2D /* HelloWorld.app */,
-				C5F1A709165F95CF00C44F2D /* HelloWorldTests.octest */,
+				C5F1A709165F95CF00C44F2D /* HelloWorldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,7 +112,6 @@
 				C5F1A6E3165F95CF00C44F2D /* UIKit.framework */,
 				C5F1A6E5165F95CF00C44F2D /* Foundation.framework */,
 				C5F1A6E7165F95CF00C44F2D /* CoreGraphics.framework */,
-				C5F1A70A165F95CF00C44F2D /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,8 +201,8 @@
 			);
 			name = HelloWorldTests;
 			productName = HelloWorldTests;
-			productReference = C5F1A709165F95CF00C44F2D /* HelloWorldTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = C5F1A709165F95CF00C44F2D /* HelloWorldTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -214,7 +210,8 @@
 		C5F1A6D6165F95CF00C44F2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastTestingUpgradeCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Sander;
 			};
 			buildConfigurationList = C5F1A6D9165F95CF00C44F2D /* Build configuration list for PBXProject "HelloWorld" */;
@@ -353,6 +350,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -400,6 +398,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorld/HelloWorld-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "MyCompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -411,6 +410,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorld/HelloWorld-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "MyCompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,13 +423,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorldTests/HelloWorldTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "MyCompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -440,13 +441,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloWorld/HelloWorld-Prefix.pch";
 				INFOPLIST_FILE = "HelloWorldTests/HelloWorldTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "MyCompany.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
