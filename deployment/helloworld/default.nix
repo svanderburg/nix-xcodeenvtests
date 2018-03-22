@@ -1,5 +1,5 @@
 { xcodeenv, sdkVersion, release ? false
-, certificateFile ? null, certificatePassword ? "", codeSignIdentity ? null, provisioningProfile ? null
+, certificateFile ? null, certificatePassword ? "", codeSignIdentity ? null, provisioningProfile ? null, signMethod ? null
 , generateIPA ? false, generateXCArchive ? false
 , enableWirelessDistribution ? false, installURL ? null, bundleId ? null, version ? null, title ? null
 }:
@@ -10,7 +10,7 @@ xcodeenv.buildApp {
   scheme = "HelloWorld";
   
   inherit sdkVersion release;
-  inherit certificateFile certificatePassword codeSignIdentity provisioningProfile;
+  inherit certificateFile certificatePassword codeSignIdentity provisioningProfile signMethod;
   inherit generateIPA generateXCArchive;
   inherit enableWirelessDistribution installURL bundleId version title;
 }

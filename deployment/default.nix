@@ -8,6 +8,7 @@
 , newDomain ? "com.myrenamedcompany"
 , newCompanyName ? "My renamed company"
 , buildIPA ? false
+, signMethod ? "ad-hoc"
 , ipaCertificateFile ? null
 , ipaCertificatePassword ? ""
 , ipaCodeSignIdentity ? "iPhone Distribution: My Company"
@@ -49,8 +50,8 @@ rec {
     certificatePassword = ipaCertificatePassword;
     codeSignIdentity = ipaCodeSignIdentity;
     provisioningProfile = ipaProvisioningProfile;
-    inherit enableWirelessDistribution installURL version;
-    bundleId = "${newDomain}.${newId}";
+    inherit enableWirelessDistribution installURL version signMethod;
+    bundleId = "${newDomain}.${newName}";
     title = newName;
   };
 
@@ -70,7 +71,7 @@ rec {
   
   renamed_source = import ./renamed-source {
     inherit (pkgs) stdenv which;
-    inherit newName newId newDomain newCompanyName;
+    inherit newName newId newDomain newCompanyName ipaCodeSignIdentity;
   };
   
   renamedPkgs = import "${renamed_source}/deployment" {
@@ -78,6 +79,7 @@ rec {
     rename = false;
     buildIPA = true;
     buildXCArchive = true;
+    inherit newDomain;
     inherit ipaCertificateFile ipaCertificatePassword ipaCodeSignIdentity ipaProvisioningProfile;
     inherit xcArchiveCertificateFile xcArchiveCertificatePassword xcArchiveCodeSignIdentity xcArchiveProvisioningProfile;
     inherit enableWirelessDistribution installURL version;

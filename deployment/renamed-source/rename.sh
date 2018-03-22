@@ -4,14 +4,15 @@ newName="$1"
 newId="$2"
 newDomain="$3"
 newCompanyName="$4"
+ipaCodeSignIdentity="$5"
 
-if [ $# -ne 4 ]
+if [ $# -ne 5 ]
 then
     echo "Usage:"
-    echo "$0 name id domain company_name"
+    echo "$0 name id domain company_name code_sign_identity"
     echo
     echo "Example:"
-    echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Company\""
+    echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Company\" \"iPhone Distribution: My Cool Company\""
     exit 1
 fi
 
@@ -82,3 +83,7 @@ find . -type f | while read i
 do
     $SED -i -e "s%My Company%$newCompanyName%g" "$i"
 done
+
+# Rename code sign identity
+
+sed -i -e "s|iPhone Distribution|$ipaCodeSignIdentity|" "src/$newName/$newName.xcodeproj/project.pbxproj"
