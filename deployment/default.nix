@@ -58,7 +58,7 @@ rec {
 } else {}) // (if buildXCArchive then {
 
   helloworld_xcarchive = import ./helloworld {
-    inherit xcodeenv sdkVersion;
+    inherit xcodeenv sdkVersion signMethod;
     release = true;
     generateXCArchive = true;
     certificateFile = xcArchiveCertificateFile;
