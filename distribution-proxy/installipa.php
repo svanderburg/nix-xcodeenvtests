@@ -47,7 +47,7 @@ $plistParams = urlencode("?ipa_url=".$ipa_url."&bundleId=".$_REQUEST["bundleId"]
     <body>
         <p><a id="installipa" href="itms-services://?action=download-manifest&amp;url=<?php print($baseURL); ?>/distribution.plist.php<?php print($plistParams); ?>">Click this link to install the IPA</a></p>
         <p><a href="/">Go back to the Hydra entry page</a></p>
-        
+
         <script type="text/javascript">
             setTimeout(function() {
                 var link = document.getElementById('installipa');

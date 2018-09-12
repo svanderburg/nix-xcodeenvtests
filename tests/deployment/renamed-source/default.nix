@@ -6,10 +6,12 @@ assert newName != null && newId != null && newDomain != null && newCompanyName !
 
 stdenv.mkDerivation {
   name = "renamed-source";
-  src = ../..;
+  src = ../../..;
   buildInputs = [ which ];
   buildPhase = ''
+    cd tests
     ${./rename.sh} "${newName}" "${newId}" "${newDomain}" "${newCompanyName}" "${ipaCodeSignIdentity}"
+    cd ..
   '';
   installPhase = ''
     mkdir -p $out

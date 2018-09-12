@@ -1,7 +1,7 @@
 { nixpkgs ? <nixpkgs>
-, xcodeVersion ? "9.2"
+, xcodeVersion ? "9.3"
 , xcodeBaseDir ? "/Applications/Xcode.app"
-, sdkVersion ? "11.2"
+, sdkVersion ? "11.3"
 , rename ? false
 , newName ? "Renamed"
 , newId ? "renamedapp"
@@ -20,61 +20,66 @@
 , xcArchiveProvisioningProfile ? null
 , enableWirelessDistribution ? false
 , installURL ? null
-, version ? "1.0"
+, appVersion ? "1.0"
+, useUpstream ? false
 }:
 
 let
   pkgs = import nixpkgs { system = "x86_64-darwin"; };
-  xcodeenv = pkgs.xcodeenv.override {
-    inherit xcodeBaseDir;
-    version = xcodeVersion;
-  };
+
+  getXcodeEnv = pkgs:
+    if useUpstream then pkgs.xcodeenv else import ../../xcodeenv {
+      inherit (pkgs) stdenv;
+    };
 in
 rec {
   helloworld = import ./helloworld {
-    inherit xcodeenv sdkVersion;
+    xcodeenv = getXcodeEnv pkgs;
+    inherit sdkVersion;
   };
 
   simulate_helloworld = import ./simulate-helloworld {
     inherit (pkgs) stdenv;
-    inherit xcodeenv helloworld;
+    inherit helloworld;
     bundleId = "MyCompany.HelloWorld";
+    xcodeenv = getXcodeEnv pkgs;
   };
 } // (if buildIPA then {
 
   helloworld_ipa = import ./helloworld {
-    inherit xcodeenv sdkVersion;
+    inherit sdkVersion;
     release = true;
     generateIPA = true;
     certificateFile = ipaCertificateFile;
     certificatePassword = ipaCertificatePassword;
     codeSignIdentity = ipaCodeSignIdentity;
     provisioningProfile = ipaProvisioningProfile;
-    inherit enableWirelessDistribution installURL version signMethod;
+    inherit enableWirelessDistribution installURL appVersion signMethod;
     bundleId = "${newDomain}.${newName}";
-    title = newName;
+    xcodeenv = getXcodeEnv pkgs;
   };
 
 } else {}) // (if buildXCArchive then {
 
   helloworld_xcarchive = import ./helloworld {
-    inherit xcodeenv sdkVersion signMethod;
+    inherit sdkVersion signMethod;
     release = true;
     generateXCArchive = true;
     certificateFile = xcArchiveCertificateFile;
     certificatePassword = xcArchiveCertificatePassword;
     codeSignIdentity = xcArchiveCodeSignIdentity;
     provisioningProfile = xcArchiveProvisioningProfile;
+    xcodeenv = getXcodeEnv pkgs;
   };
 
 } else {}) // (if rename then rec {
-  
+
   renamed_source = import ./renamed-source {
     inherit (pkgs) stdenv which;
     inherit newName newId newDomain newCompanyName ipaCodeSignIdentity;
   };
-  
-  renamedPkgs = import "${renamed_source}/deployment" {
+
+  renamedPkgs = import "${renamed_source}/tests/deployment" {
     inherit nixpkgs xcodeVersion xcodeBaseDir sdkVersion;
     rename = false;
     buildIPA = true;
@@ -82,7 +87,7 @@ rec {
     inherit newDomain;
     inherit ipaCertificateFile ipaCertificatePassword ipaCodeSignIdentity ipaProvisioningProfile;
     inherit xcArchiveCertificateFile xcArchiveCertificatePassword xcArchiveCodeSignIdentity xcArchiveProvisioningProfile;
-    inherit enableWirelessDistribution installURL version;
+    inherit enableWirelessDistribution installURL appVersion useUpstream;
   };
-  
+
 } else {})
