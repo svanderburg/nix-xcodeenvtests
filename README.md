@@ -131,7 +131,7 @@ In addition, you need to set the following parameters:
 * `certificatePassword` specifies the password of the P12 certificate.
 * `provisioningProfile` refers to the provision profile needed to sign the app
 * `signMethod` should refer to `ad-hoc` for signing the app with an ad-hoc
-  certificate, `enterprise` for enterprise certificates and `store` for App
+  certificate, `enterprise` for enterprise certificates and `app-store` for App
   store certificates.
 * `generateIPA` specifies that we want to produce an IPA file (this is probably
   what you want)
