@@ -47,7 +47,6 @@ let
 
   xcodewrapperFormalArgs = builtins.functionArgs composeXcodeWrapper;
   xcodewrapperArgs = builtins.intersectAttrs xcodewrapperFormalArgs args;
-
   xcodewrapper = composeXcodeWrapper xcodewrapperArgs;
 
   extraArgs = removeAttrs args ([ "name" "scheme" "xcodeFlags" "release" "certificateFile" "certificatePassword" "provisioningProfile" "signMethod" "generateIPA" "generateXCArchive" "enableWirelessDistribution" "installURL" "bundleId" "version" ] ++ builtins.attrNames xcodewrapperFormalArgs);
