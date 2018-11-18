@@ -98,7 +98,7 @@ xcodeenv.buildApp {
 
   release = true;
   certificateFile = ./mycertificate.p12;
-  certificatePassword = "secret"
+  certificatePassword = "secret";
   provisioningProfile = ./myprovisioning.profile;
   signMethod = "ad-hoc"; # 'enterprise' or 'store'
   generateIPA = true;
@@ -186,6 +186,7 @@ xcode.simulateApp {
   # Supports all xcodewrapper parameters as well
   xcodeBaseDir = "/Applications/Xcode.app";
 }
+```
 
 The above expression produces a script that starts the simulator from the
 provided Xcode installation. The script can be started as follows:
@@ -216,7 +217,9 @@ in
 xcode.simulateApp {
   name = "simulate";
   bundleId = "mycompany.myapp";
-  app = xcode.buildApp { ... };
+  app = xcode.buildApp {
+    # ...
+  };
 
   # Supports all xcodewrapper parameters as well
   xcodeBaseDir = "/Applications/Xcode.app";
