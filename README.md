@@ -44,8 +44,13 @@ any build function implemented in the Nix expression language that requires
 Xcode.
 
 ```nix
-{xcodeenv}:
+let
+  pkgs = import <nixpkgs> {};
 
+  xcodeenv = import ./xcodeenv {
+    inherit (pkgs) stdenv;
+  };
+in
 xcodeenv.composeXcodeWrapper {
   version = "9.2";
   xcodeBaseDir = "/Applications/Xcode.app";
@@ -73,8 +78,13 @@ for release purposes, e.g. ad-hoc, enterprise or store installations, by
 executing the `xcodeenv.buildApp {}` function:
 
 ```nix
-{xcodeenv}:
+let
+  pkgs = import <nixpkgs> {};
 
+  xcodeenv = import ./xcodeenv {
+    inherit (pkgs) stdenv;
+  };
+in
 xcodeenv.buildApp {
   name = "MyApp";
   src = ./myappsources;
@@ -163,8 +173,13 @@ In addition to building iOS apps, we can also automatically spawn simulator
 instances:
 
 ```nix
-{xcodeenv}:
+let
+  pkgs = import <nixpkgs> {};
 
+  xcodeenv = import ./xcodeenv {
+    inherit (pkgs) stdenv;
+  };
+in
 xcode.simulateApp {
   name = "simulate";
 
@@ -191,8 +206,13 @@ You can also extend the simulator script to automatically deploy and launch an
 app in the requested simulator instance:
 
 ```nix
-{xcodeenv}:
+let
+  pkgs = import <nixpkgs> {};
 
+  xcodeenv = import ./xcodeenv {
+    inherit (pkgs) stdenv;
+  };
+in
 xcode.simulateApp {
   name = "simulate";
   bundleId = "mycompany.myapp";
