@@ -4,9 +4,10 @@ newName="$1"
 newId="$2"
 newDomain="$3"
 newCompanyName="$4"
-ipaCodeSignIdentity="$5"
+newTeamName="$5"
+ipaCodeSignIdentity="$6"
 
-if [ $# -ne 5 ]
+if [ $# -ne 6 ]
 then
     echo "Usage:"
     echo "$0 name id domain company_name code_sign_identity"
@@ -82,6 +83,13 @@ done
 find . -type f | while read i
 do
     $SED -i -e "s%My Company%$newCompanyName%g" "$i"
+done
+
+# Replace team in contents
+
+find . -type f | while read i
+do
+    $SED -i -e "s%My Team%$newTeamName%g" "$i"
 done
 
 # Rename code sign identity

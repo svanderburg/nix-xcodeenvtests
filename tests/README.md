@@ -105,6 +105,7 @@ $ nix-build --arg rename true \
   --argstr newId "renamedapp" \
   --argstr newDomain "com.example" \
   --argstr newCompanyName "My Renamed Company" \
+  --argstr newTeamName "My Renamed Team" \
   --arg ipaCertificateFile /path/to/certificate.p12 \
   --argstr ipaCertificatePassword secret \
   --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \
@@ -147,6 +148,7 @@ $ nix-build --arg rename true \
   --argstr newId "renamedapp" \
   --argstr newDomain "com.example" \
   --argstr newCompanyName "My Renamed Company" \
+  --argstr newTeamName "My Renamed Team" \
   --arg ipaCertificateFile /path/to/certificate.p12 \
   --argstr ipaCertificatePassword secret \
   --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \

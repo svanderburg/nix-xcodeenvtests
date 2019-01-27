@@ -1,12 +1,13 @@
 { nixpkgs ? <nixpkgs>
-, xcodeVersion ? "9.3"
+, xcodeVersion ? "10.1"
 , xcodeBaseDir ? "/Applications/Xcode.app"
-, sdkVersion ? "11.3"
+, sdkVersion ? "12.1"
 , rename ? false
 , newName ? "Renamed"
 , newId ? "renamedapp"
 , newDomain ? "com.myrenamedcompany"
 , newCompanyName ? "My renamed company"
+, newTeamName ? "My renamed team"
 , buildIPA ? false
 , signMethod ? "ad-hoc"
 , ipaCertificateFile ? null
@@ -76,7 +77,7 @@ rec {
 
   renamed_source = import ./renamed-source {
     inherit (pkgs) stdenv which;
-    inherit newName newId newDomain newCompanyName ipaCodeSignIdentity;
+    inherit newName newId newDomain newCompanyName newTeamName ipaCodeSignIdentity;
   };
 
   renamedPkgs = import "${renamed_source}/tests/deployment" {

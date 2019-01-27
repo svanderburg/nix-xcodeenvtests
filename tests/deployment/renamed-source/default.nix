@@ -1,5 +1,5 @@
 { stdenv, which
-, newName, newId, newDomain, newCompanyName, ipaCodeSignIdentity
+, newName, newId, newDomain, newCompanyName, newTeamName, ipaCodeSignIdentity
 }:
 
 assert newName != null && newId != null && newDomain != null && newCompanyName != null && ipaCodeSignIdentity != null;
@@ -10,7 +10,7 @@ stdenv.mkDerivation {
   buildInputs = [ which ];
   buildPhase = ''
     cd tests
-    ${./rename.sh} "${newName}" "${newId}" "${newDomain}" "${newCompanyName}" "${ipaCodeSignIdentity}"
+    ${./rename.sh} "${newName}" "${newId}" "${newDomain}" "${newCompanyName}" "${newTeamName}" "${ipaCodeSignIdentity}"
     cd ..
   '';
   installPhase = ''
