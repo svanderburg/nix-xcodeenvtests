@@ -2,7 +2,7 @@
 , newName, newId, newDomain, newCompanyName, newTeamName, ipaCodeSignIdentity
 }:
 
-assert newName != null && newId != null && newDomain != null && newCompanyName != null && ipaCodeSignIdentity != null;
+assert newName != null && newId != null && newDomain != null && newCompanyName != null && newTeamName != null && ipaCodeSignIdentity != null;
 
 stdenv.mkDerivation {
   name = "renamed-source";
