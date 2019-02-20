@@ -10,10 +10,10 @@ ipaCodeSignIdentity="$6"
 if [ $# -ne 6 ]
 then
     echo "Usage:"
-    echo "$0 name id domain company_name code_sign_identity"
+    echo "$0 name id domain company_name team-name code_sign_identity"
     echo
     echo "Example:"
-    echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Company\" \"iPhone Distribution: My Cool Company\""
+    echo "$0 ByeWorld byeworld com.mycoolcompany \"My Cool Team\" \"My Cool Company\" \"iPhone Distribution: My Cool Company\""
     exit 1
 fi
 

@@ -85,7 +85,7 @@ rec {
     rename = false;
     buildIPA = true;
     buildXCArchive = true;
-    inherit newDomain;
+    inherit newDomain newTeamName;
     inherit ipaCertificateFile ipaCertificatePassword ipaCodeSignIdentity ipaProvisioningProfile;
     inherit xcArchiveCertificateFile xcArchiveCertificatePassword xcArchiveCodeSignIdentity xcArchiveProvisioningProfile;
     inherit enableWirelessDistribution installURL appVersion useUpstream;
