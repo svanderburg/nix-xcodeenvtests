@@ -105,14 +105,14 @@ $ nix-build --arg rename true \
   --argstr newId "renamedapp" \
   --argstr newDomain "com.example" \
   --argstr newCompanyName "My Renamed Company" \
-  --argstr newTeamName "My Renamed Team" \
+  --argstr newTeamName "ABCD1234" \ # Should match team identifier in the certificate name
   --arg ipaCertificateFile /path/to/certificate.p12 \
   --argstr ipaCertificatePassword secret \
-  --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+  --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company (ABCD1234)" \
   --arg ipaProvisioningProfile /path/to/provisioning.mobileprovision \
   --arg xcArchiveCertificateFile /path/to/certificate.p12 \
   --argstr xcArchiveCertificatePassword secret \
-  --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+  --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company (ABCD1234)" \
   --arg xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
   --argstr signMethod "ad-hoc" \ # or: 'enterprise', 'app-store'
   -A renamedPkgs.renamedapp_ipa
@@ -148,14 +148,14 @@ $ nix-build --arg rename true \
   --argstr newId "renamedapp" \
   --argstr newDomain "com.example" \
   --argstr newCompanyName "My Renamed Company" \
-  --argstr newTeamName "My Renamed Team" \
+  --argstr newTeamName "ABCD1234" \ # Should match team identifier in the certificate name
   --arg ipaCertificateFile /path/to/certificate.p12 \
   --argstr ipaCertificatePassword secret \
-  --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+  --argstr ipaCodeSignIdentity "iPhone Distribution: My Renamed Company (ABCD1234)" \
   --arg ipaProvisioningProfile /path/to/provisioning.mobileprovision \
   --arg xcArchiveCertificateFile /path/to/certificate.p12 \
   --argstr xcArchiveCertificatePassword secret \
-  --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company" \
+  --argstr xcArchiveCodeSignIdentity "iPhone Distribution: My Renamed Company (ABCD1234)" \
   --arg xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
   --argstr signMethod "ad-hoc" \ # or: 'enterprise', 'app-store'
   --arg enableWirelessDistribution true \
