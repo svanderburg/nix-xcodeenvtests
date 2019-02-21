@@ -159,7 +159,7 @@ $ nix-build --arg rename true \
   --arg xcArchiveProvisioningProfile /path/to/provisioning.mobileprovision \
   --argstr signMethod "ad-hoc" \ # or: 'enterprise', 'app-store'
   --arg enableWirelessDistribution true \
-  --arg installURL "/installipa.php" \
+  --argstr installURL "/installipa.php" \
   --argstr bundleId "com.mycoolcompany.renamed" \
   --argstr appVersion "1.0" \
   -A renamedPkgs.renamedapp_ipa
