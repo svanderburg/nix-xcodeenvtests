@@ -274,6 +274,11 @@ services.httpd = {
 };
 ```
 
+Test cases
+==========
+The `tests/` sub folder contains a collection of testcases that can be used
+to validate the iOS build functionality.
+
 License
 =======
 The contents of this package (except for the iOS example project) is covered by
