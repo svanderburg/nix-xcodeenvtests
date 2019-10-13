@@ -279,6 +279,16 @@ Test cases
 The `tests/` sub folder contains a collection of testcases that can be used
 to validate the iOS build functionality.
 
+Troubleshooting
+===============
+In some rare cases, it may happen that after a failure, changes are not picked
+up. Most likely, this is caused by a derived data cache that Xcode maintains.
+To wipe it you can run:
+
+```bash
+$ rm -rf ~/Library/Developer/Xcode/DerivedData
+```
+
 License
 =======
 The contents of this package (except for the iOS example project) is covered by
